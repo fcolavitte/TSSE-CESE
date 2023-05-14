@@ -1,0 +1,54 @@
+---
+:source:
+  :path: test
+  :file: test_leds.c
+:successes:
+- :test: test_todos_los_leds_inician_apagados
+  :line: 13
+  :message: ''
+  :unity_test_time: 0
+- :test: test_prender_un_led
+  :line: 19
+  :message: ''
+  :unity_test_time: 0
+- :test: test_prender_y_apagar_un_led
+  :line: 24
+  :message: ''
+  :unity_test_time: 0
+- :test: test_prender_y_apagar_varios_leds
+  :line: 30
+  :message: ''
+  :unity_test_time: 0
+- :test: test_prender_todos_los_leds
+  :line: 38
+  :message: ''
+  :unity_test_time: 0
+- :test: test_prender_y_apagar_todos_los_leds
+  :line: 43
+  :message: ''
+  :unity_test_time: 0
+- :test: test_recuperar_estado_de_un_led
+  :line: 49
+  :message: ''
+  :unity_test_time: 0
+- :test: test_prender_y_recuperar_estado_de_un_led
+  :line: 55
+  :message: ''
+  :unity_test_time: 0
+- :test: test_apagar_y_recuperar_estado_de_un_led
+  :line: 62
+  :message: ''
+  :unity_test_time: 0
+- :test: test_prender_y_recuperar_estado_de_varios_led
+  :line: 69
+  :message: ''
+  :unity_test_time: 0
+:failures: []
+:ignores: []
+:counts:
+  :total: 10
+  :passed: 10
+  :failed: 0
+  :ignored: 0
+:stdout: []
+:time: 0.08531749999929161
