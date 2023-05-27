@@ -7,19 +7,21 @@
 #define ALL_LEDS_OFF 0x0000
 #define ALL_LEDS_ON 0xFFFF
 
+uint16_t bitLedPosition(uint8_t led);
+
 static uint16_t * puerto_virtual;
 
 void ledsInit(uint16_t * direccion) {
     puerto_virtual = direccion;
-    *direccion = ALL_LEDS_OFF;
+    ledsTurnOffAll();
 }
 
 void ledsTurnOnSingle(uint8_t led) {
-    *puerto_virtual |= (FIRST_BIT<<(led-INDEX_OFFSET));
+    *puerto_virtual |= bitLedPosition(led);
 }
 
 void ledsTurnOffSingle(uint8_t led) {
-    *puerto_virtual &= ~(FIRST_BIT<<(led-INDEX_OFFSET));
+    *puerto_virtual &= ~bitLedPosition(led);
 }
 
 void ledsTurnOnAll() {
@@ -32,9 +34,15 @@ void ledsTurnOffAll() {
 
 bool ledIsOn(uint8_t led) {
     uint16_t bit_case = 0;
-    bit_case = (*puerto_virtual) &(FIRST_BIT<<(led-INDEX_OFFSET));
+    bit_case = (*puerto_virtual) &bitLedPosition(led);
     if(bit_case > 0) {
         return 1;
     }
     return 0;
+}
+
+uint16_t bitLedPosition(uint8_t led) {
+    uint16_t retvalue = 0;
+    retvalue = FIRST_BIT<<(led-INDEX_OFFSET);
+    return retvalue;
 }
