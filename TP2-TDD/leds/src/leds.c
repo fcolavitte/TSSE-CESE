@@ -33,12 +33,7 @@ void ledsTurnOffAll() {
 }
 
 bool ledIsOn(uint8_t led) {
-    uint16_t bit_case = 0;
-    bit_case = (*puerto_virtual) &bitLedPosition(led);
-    if(bit_case > 0) {
-        return 1;
-    }
-    return 0;
+    return (*puerto_virtual) & bitLedPosition(led);
 }
 
 uint16_t bitLedPosition(uint8_t led) {
