@@ -68,7 +68,6 @@ void test_apagar_y_recuperar_estado_de_un_led(void) {
 
 void test_prender_y_recuperar_estado_de_varios_led(void) {
 	bool estado = 0;
-
 	ledsTurnOnSingle(5);
 	estado = ledIsOn(5);
 	TEST_ASSERT_EQUAL(1, estado);
@@ -76,8 +75,4 @@ void test_prender_y_recuperar_estado_de_varios_led(void) {
 	ledsTurnOnSingle(7);
 	estado = ledIsOn(7);
 	TEST_ASSERT_EQUAL(1, estado);
-
-	ledsTurnOffSingle(7);
-	estado = ledIsOn(7);
-	TEST_ASSERT_EQUAL(0, estado);
 }
