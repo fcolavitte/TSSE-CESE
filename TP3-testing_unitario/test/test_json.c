@@ -110,9 +110,7 @@ void test_encontrar_value_entero(void) {
     uint8_t retvalue = 1;
     retvalue = get_Json_value(Json, key, value, return_max_lenght);
 	TEST_ASSERT_EQUAL_HEX8(1, retvalue);
-    if(value[0]!='2'||value[1]!='0'||value[2]!='\0') {
-        TEST_FAIL_MESSAGE("No se recibió el valor esperado");
-    }
+    TEST_ASSERT_EQUAL_STRING("20", value);
 }
 
 
@@ -125,9 +123,7 @@ void test_encontrar_value_string(void) {
     uint8_t retvalue = 1;
     retvalue = get_Json_value(Json, key, value, return_max_lenght);
 	TEST_ASSERT_EQUAL_HEX8(1, retvalue);
-    if(value[0]!='2'||value[1]!='0'||value[2]!='\0') {
-        TEST_FAIL_MESSAGE("No se recibió el valor esperado");
-    }
+    TEST_ASSERT_EQUAL_STRING("20", value);
 }
 
 
@@ -140,9 +136,7 @@ void test_encontrar_value_entero_en_JSON_con_dos_keys(void) {
     uint8_t retvalue = 1;
     retvalue = get_Json_value(Json, key, value, return_max_lenght);
 	TEST_ASSERT_EQUAL_HEX8(1, retvalue);
-    if(value[0]!='2'||value[1]!='0'||value[2]!='\0') {
-        TEST_FAIL_MESSAGE("No se recibió el valor esperado");
-    }
+    TEST_ASSERT_EQUAL_STRING("20", value);
 }
 
 
@@ -155,9 +149,7 @@ void test_encontrar_value_string_en_JSON_con_dos_keys(void) {
     uint8_t retvalue = 1;
     retvalue = get_Json_value(Json, key, value, return_max_lenght);
 	TEST_ASSERT_EQUAL_HEX8(1, retvalue);
-    if(value[0]!='2'||value[1]!='0'||value[2]!='\0') {
-        TEST_FAIL_MESSAGE("No se recibió el valor esperado");
-    }
+    TEST_ASSERT_EQUAL_STRING("20", value);
 }
 
 
@@ -170,9 +162,7 @@ void test_encontrar_value_entero_en_JSON_con_dos_keys_con_el_key_a_buscar_al_fin
     uint8_t retvalue = 1;
     retvalue = get_Json_value(Json, key, value, return_max_lenght);
 	TEST_ASSERT_EQUAL_HEX8(1, retvalue);
-    if(value[0]!='3'||value[1]!='5'||value[2]!='\0') {
-        TEST_FAIL_MESSAGE("No se recibió el valor esperado");
-    }
+    TEST_ASSERT_EQUAL_STRING("35", value);
 }
 
 
@@ -185,10 +175,7 @@ void test_encontrar_value_string_en_JSON_con_dos_keys_con_el_key_a_buscar_al_fin
     uint8_t retvalue = 1;
     retvalue = get_Json_value(Json, key, value, return_max_lenght);
 	TEST_ASSERT_EQUAL_HEX8(1, retvalue);
-    uint8_t comparacion_de_strings = strcmp(value, "prueba");
-    if(0!=comparacion_de_strings) {
-        TEST_FAIL_MESSAGE("No se recibió el valor esperado");
-    }
+    TEST_ASSERT_EQUAL_STRING("prueba", value);
 }
 
 

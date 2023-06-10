@@ -29,27 +29,37 @@ uint8_t get_Json_value(uint8_t *Json, uint8_t *key, uint8_t *value_return, uint8
     if(Json==0||key==0||value_return==0||return_max_lenght==0){
     	return 0;
     }
-    uint8_t *indexIn;										/* Inicio del value		*/
-    uint8_t *indexOut;										/* Fin del value			*/
-    indexIn=(uint8_t*)strstr((char*)Json, (char*)key);		/* Posicionarse al comienzo del key		*/
-    if(indexIn==0){						/* Si no encontró el key, strstr() devuelve 0		*/
+	/* Inicio del value		*/
+    uint8_t *indexIn;
+	/* Fin del value			*/
+    uint8_t *indexOut;
+	/* Posicionarse al comienzo del key		*/
+    indexIn=(uint8_t*)strstr((char*)Json, (char*)key);
+	/* Si no encontró el key, strstr() devuelve 0		*/
+    if(indexIn==0){
 		printf(">>ERROR>get_Json_value()>KEY NO ENCONTRADO:%s\n",(char*)key);
     	return 0;
     }
-    if(strlen((char*)indexIn)<strlen((char*)key)+3){	/* Si no posee largo suficiente para obtener valor devolver 0	*/
+	/* Si no posee largo suficiente para obtener valor devolver 0	*/
+    if(strlen((char*)indexIn)<strlen((char*)key)+3){
     	return 0;
     }
-    indexIn+=strlen((char*)key)+2;		/* Se posiciona justo despues del caracter ':' que separa key de value		*/
-    if(*indexIn=='"'){					/* Si después de ':' hay un '"', el value es un String y el value está entre comillas dobles*/
+	/* Se posiciona justo despues del caracter ':' que separa key de value		*/
+    indexIn+=strlen((char*)key)+2;
+	/* Si después de ':' hay un '"', el value es un String y el value está entre comillas dobles*/
+    if(*indexIn=='"'){
     	indexIn++;
         indexOut=(uint8_t*)strstr((char*)indexIn,"\"");
     } else {
-        indexOut=(uint8_t*)strstr((char*)indexIn,",");	/* Si value no es un String, al final del value hay una ',' separandolo del siguiente key */
-    	if(indexOut==0){ 	 	 	 	/* o hay un '}' indicando que es el fin del Json	 	 	 	 	 	 	 	 	 		 */
+		/* Si value no es un String, al final del value hay una ',' separandolo del siguiente key */
+        indexOut=(uint8_t*)strstr((char*)indexIn,",");
+		/* o hay un '}' indicando que es el fin del Json */
+    	if(indexOut==0){
     		indexOut=(uint8_t*)strstr((char*)indexIn,"}");
     	}
     }
-	if(indexOut==0){	/* Si no se encontro el caracter de cierre del value se devuelve 0 */
+	/* Si no se encontro el caracter de cierre del value se devuelve 0 */
+	if(indexOut==0){
 		return 0;
 	}
 	uint32_t value_lenght = indexOut-indexIn;
